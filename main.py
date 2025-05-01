@@ -1,11 +1,11 @@
 from art import logo
-lines = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
 letters = ["A", "B", "C"]
 
 print(logo)
 
 retry = True
 while retry:
+    lines = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     players = []
 
     player1 = ""
