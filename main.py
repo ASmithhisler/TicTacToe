@@ -23,6 +23,7 @@ while retry:
 
     x_won = False
     o_won = False
+    tie = False
 
     game_is_on = True
     while game_is_on:
@@ -69,6 +70,7 @@ while retry:
             dnO = 0
             dpO = 0
 
+            occupied_squares = 0
             inverted_lines = [lines[2], lines[1], lines[0]]
             for c in range(0, 3):
                 rX = 0
@@ -105,15 +107,22 @@ while retry:
                     if rO == 3 or cO == 3:
                         o_won = True
 
-            if x_won or o_won:
+                    if lines[r][c] == "X" or lines[r][c] == "O":
+                        occupied_squares += 1
+                    if occupied_squares == 9:
+                        tie = True
+
+            if x_won or o_won or tie:
                 break
 
-        if x_won or o_won:
+        if x_won or o_won or tie:
             game_is_on = False
             if x_won:
-                print(f"X, you won!")
+                print("X, you won!")
             if o_won:
-                print(f"O, you won!")
+                print("O, you won!")
+            if tie:
+                print("It was a tie!")
             restart = input("Type 'y' to go again: ")
             if restart != "y":
                 retry = False
