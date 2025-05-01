@@ -54,25 +54,32 @@ while retry:
                     print("That position is invalid.\n")
 
             board = ""
-            for r in range(0, 3):
-                rX = 0
-                rO = 0
-                for c in range(0, 3):
-                    board += f" {lines[c][r]} "
-                    if c < 2:
+            for c in range(0, 3):
+                for r in range(0, 3):
+                    board += f" {lines[r][c]} "
+                    if r < 2:
                         board += "|"
-                    if lines[c][r] == "X":
-                        rX += 1
-                    if rX == 3:
-                        x_won = True
-                    if lines[c][r] == "O":
-                        rO += 1
-                    if rO == 3:
-                        o_won = True
                 board += "\n"
-                if r < 2:
+                if c < 2:
                     board += "-----------\n"
             print(board)
+
+            for c in range(0, 3):
+                rX = 0; cX = 0
+                rO = 0; cO = 0
+                for r in range(0, 3):
+                    if lines[r][c] == "X":
+                        rX += 1
+                    if lines[c][r] == "X":
+                        cX += 1
+                    if rX == 3 or cX == 3:
+                        x_won = True
+                    if lines[r][c] == "O":
+                        rO += 1
+                    if lines[c][r] == "O":
+                        cO += 1
+                    if rO == 3 or cO == 3:
+                        o_won = True
 
             if x_won or o_won:
                 break
