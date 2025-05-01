@@ -64,9 +64,32 @@ while retry:
                     board += "-----------\n"
             print(board)
 
+            dnX = 0
+            dXp = 0
+            dnO = 0
+            dpO = 0
+
+            inverted_lines = [lines[2], lines[1], lines[0]]
             for c in range(0, 3):
-                rX = 0; cX = 0
-                rO = 0; cO = 0
+                rX = 0
+                cX = 0
+                rO = 0
+                cO = 0
+
+                if lines[c][c] == "X":
+                    dnX += 1
+                if inverted_lines[c][c] == "X":
+                    dXp += 1
+                if dnX == 3 or dXp == 3:
+                    x_won = True
+
+                if lines[c][c] == "O":
+                    dnO += 1
+                if inverted_lines[c][c] == "O":
+                    dpO += 1
+                if dnO == 3 or dpO == 3:
+                    o_won = True
+
                 for r in range(0, 3):
                     if lines[r][c] == "X":
                         rX += 1
@@ -74,6 +97,7 @@ while retry:
                         cX += 1
                     if rX == 3 or cX == 3:
                         x_won = True
+
                     if lines[r][c] == "O":
                         rO += 1
                     if lines[c][r] == "O":
